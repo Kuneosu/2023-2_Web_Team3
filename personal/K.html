@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./K.css">
+    <script src="./K.js"></script>
+</head>
+
+
+<body>
+    <h1>KKS Personal Page</h1>
+    <div class="wrapper">
+        <div class="content_wrapper">
+            <h2>갤러리</h2>
+            <div id="gallery_wrapper">
+                <button id="gallery_openner" onclick="toggleGallery()">▶ Gallery</button>
+                <div id="gallery_container">
+                    <div id="gallery" class="gallery"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content_wrapper">
+            <h2>할일 목록</h2>
+            <div id="todoContainer">
+                <div id="todoIn"><input type="text" id="todoInput" placeholder="할일을 입력하세요">
+                    <button id="addTodoBtn">추가</button>
+                </div>
+
+                <ul id="todoList"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
