@@ -1,27 +1,160 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .wrapper {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: papayawhip;
+}
+
+#banner {
+    width: 100%;
+    height: 300px;
+    background-color: peru;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    margin: 0px 0px 40px 0px;
+    font-size: 35px;
+    font-weight: 600;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    background: #FF512F;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F09819, #FF512F);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F09819, #FF512F);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
+@import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
 
-#title {
-    font-size: 32px;
-    font-weight: 600;
+h1 {
+    font-size: 5em;
+    font: bold 5.5vw/1.6 'Signika', sans-serif;
+    user-select: none;
+}
+
+h1 span {
+    display: inline-block;
+    animation: float .2s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: none;
+    }
+
+    33% {
+        transform: translateY(-1px) rotate(-2deg);
+    }
+
+    66% {
+        transform: translateY(1px) rotate(2deg);
+    }
+}
+
+body:hover h1 span {
+    animation: bounce .6s;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: rotateX(20deg) translateY(2px) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(3deg) scale(1.1);
+    }
+}
+
+h1 span:nth-child(4n) {
+    color: hsl(50, 75%, 55%);
+    text-shadow: 1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%), 3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%);
+}
+
+h1 span:nth-child(4n-1) {
+    color: hsl(135, 35%, 55%);
+    text-shadow: 1px 1px hsl(135, 35%, 45%), 2px 2px hsl(135, 35%, 45%), 3px 3px hsl(135, 35%, 45%), 4px 4px hsl(135, 35%, 45%);
+}
+
+h1 span:nth-child(4n-2) {
+    color: hsl(155, 35%, 60%);
+    text-shadow: 1px 1px hsl(155, 25%, 50%), 2px 2px hsl(155, 25%, 50%), 3px 3px hsl(155, 25%, 50%), 4px 4px hsl(140, 25%, 50%);
+}
+
+h1 span:nth-child(4n-3) {
+    color: hsl(30, 100%, 64%);
+    text-shadow: 1px 1px hsl(30, 45%, 50%), 2px 2px hsl(30, 45%, 50%), 3px 3px hsl(30, 45%, 50%), 4px 4px hsl(30, 45%, 50%);
+}
+
+h1 span:nth-child(2) {
+    animation-delay: .05s;
+}
+
+h1 span:nth-child(3) {
+    animation-delay: .1s;
+}
+
+h1 span:nth-child(4) {
+    animation-delay: .15s;
+}
+
+h1 span:nth-child(5) {
+    animation-delay: .2s;
+}
+
+h1 span:nth-child(6) {
+    animation-delay: .25s;
+}
+
+h1 span:nth-child(7) {
+    animation-delay: .3s;
+}
+
+h1 span:nth-child(8) {
+    animation-delay: .35s;
+}
+
+h1 span:nth-child(9) {
+    animation-delay: .4s;
 }
 
 #date {
-    font-size: 20px;
-    font-weight: 500;
-
+    font-size: 30px;
+    font-weight: 600;
+    font-size: 5em;
+    font: bold 2vw/1.6 'Signika', sans-serif;
+    color: hsl(30, 100%, 70%);
+    text-shadow: 1px 1px hsl(0, 0%, 32%);
 }
 
 .info {
-    border: 3px solid black;
-    width: 1024px;
+    width: 100%;
     height: 720px;
 
     display: flex;
@@ -31,8 +164,16 @@
 
 
 .info__card {
-    border: 2px dashed black;
-    width: 300px;
+    background: #ffe259;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffa751, #ffe259);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffa751, #ffe259);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 15px;
+    box-shadow: 2px 4px 8px 0 rgba(207, 166, 0, 0.613);
+    width: 350px;
     height: 600px;
     display: flex;
     flex-direction: column;
@@ -41,12 +182,12 @@
 }
 
 .info__name {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 600;
 }
 
 .info__profile {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 500;
 }
 
@@ -71,7 +212,7 @@
     background-image: url(/U.png);
 }
 
-.btn__personal {
+button {
     width: 150px;
     height: 60px;
     font-size: 14px;
@@ -82,12 +223,145 @@
     border-radius: 20px;
 }
 
-.btn__personal:hover {
+button:hover {
     background-color: black;
     color: white;
     cursor: pointer;
 }
 
-.btn__personal:active {
+button:active {
     background-color: #888888;
+}
+
+
+#contents {
+    margin: 0;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+}
+
+#gallery_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 600px;
+    height: 600px;
+    border: 2px dashed rgb(0, 156, 228);
+    padding: 10px;
+
+    background-color: white;
+}
+
+#gallery_container {
+    width: 0px;
+    height: 0px;
+    /* 원하는 갤러리의 최대 너비 */
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    /* 갤러리 너비 변경에 트랜지션 적용 */
+}
+
+#gallery {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+#todoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 600px;
+    height: 600px;
+    border: 2px dashed rgb(0, 156, 228);
+    overflow-y: auto;
+    /* 스크롤이 필요할 때만 스크롤 표시 */
+    padding: 10px;
+
+    background-color: white;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    width: 500px;
+    border-bottom: 1px solid #ccc;
+}
+
+#todoList button {
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    padding: 3px;
+}
+
+#todoList button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+#todoList button:active {
+    background-color: #ccc;
+    color: #fff;
+}
+
+#todoInput {
+    width: 400px;
+    height: 35px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 0px;
+}
+
+#addTodoBtn {
+    width: 100px;
+    height: 43px;
+    border-radius: 5px;
+    margin: 0px;
+    margin-left: 30px;
+    padding: 3px;
+}
+
+#todoIn {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+#openCalendar,
+#openPost {
+    width: 600px;
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
 }

@@ -11,8 +11,13 @@
 
 <body onload="date_loader()">
     <div class="wrapper">
-        <div id="title">2023-2 웹프로그래밍 4조</div>
-        <div id="date">2023.00.00 / 00:00:00</div>
+        <div id="banner">
+            <h1><span>웹</span><span>프</span><span>로</span><span>그</span><span>래</span><span>밍</span><span>
+                    &nbsp;</span><span>4</span><span>조</span>
+            </h1>
+            <div id="date">2023.00.00 / 00:00:00</div>
+        </div>
+        <div class="subtitle">팀원 소개</div>
         <div class=" info">
             <div class="info__card">
                 <div class="info__image" id="K">
@@ -25,7 +30,7 @@
                     학번 : 20193037
 
                 </div>
-                <button class="btn__personal" onclick="go('K')">GO Personal Page</button>
+
             </div>
             <div class="info__card">
                 <div class="info__image" id="C">
@@ -38,7 +43,7 @@
                     학번 : 20193037
 
                 </div>
-                <button class="btn__personal" onclick="go('C')">GO Personal Page</button>
+
             </div>
             <div class="info__card">
                 <div class="info__image" id="U">
@@ -51,8 +56,38 @@
                     학번 : 20193037
 
                 </div>
-                <button class="btn__personal" onclick="go('U')">GO Personal Page</button>
+
             </div>
+        </div>
+        <div class="subtitle">추가 기능</div>
+        <div id="contents">
+            <div class="content_wrapper">
+                <button id="openCalendar" onclick="go('calendar')">달력 열기</button>
+            </div>
+            <div class="content_wrapper">
+                <button id="openPost" onclick="go('post')">게시판 열기</button>
+            </div>
+            <div class="content_wrapper">
+                <h2>갤러리</h2>
+                <div id="gallery_wrapper">
+                    <button id="gallery_openner" onclick="toggleGallery()">▶ Gallery</button>
+                    <div id="gallery_container">
+                        <div id="gallery" class="gallery"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content_wrapper">
+                <h2>할일 목록</h2>
+                <div id="todoContainer">
+                    <div id="todoIn"><input type="text" id="todoInput" placeholder="할일을 입력하세요">
+                        <button id="addTodoBtn">추가</button>
+                    </div>
+
+                    <ul id="todoList"></ul>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </body>
