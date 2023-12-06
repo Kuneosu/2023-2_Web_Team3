@@ -47,8 +47,10 @@ body {
 
 h1 {
     font-size: 5em;
-    font: bold 5.5vw/1.6 'Signika', sans-serif;
+    font: bold 5vw/1.6 'Signika', sans-serif;
     user-select: none;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 h1 span {
@@ -353,6 +355,67 @@ li {
     height: 40px;
     justify-content: center;
     align-items: center;
+}
+
+
+#searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 600px;
+    height: 600px;
+    border: 2px dashed rgb(0, 156, 228);
+    overflow-y: auto;
+    /* 스크롤이 필요할 때만 스크롤 표시 */
+    padding: 10px;
+
+    background-color: white;
+}
+
+input[type="date"] {
+    width: 400px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#description {
+    width: 200px;
+    height: 35px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 0px;
+}
+
+#amount {
+    width: 200px;
+    height: 35px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 0px;
+}
+
+#addMoneyBtn {
+    width: 100px;
+    height: 43px;
+    border-radius: 5px;
+    margin: 0px;
+    margin-left: 30px;
+    padding: 3px;
+}
+
+#searchButton {
+    width: 100px;
+    height: 43px;
+    border-radius: 5px;
+    margin: 0px;
+    margin-left: 30px;
+    padding: 3px;
 }
 
 #openCalendar,

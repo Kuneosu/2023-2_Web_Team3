@@ -190,3 +190,83 @@ function toggleGallery() {
 const go = (link) => {
     window.location.href = `./${link}.html`;
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('accountForm');
+    const descriptionInput = document.getElementById('description');
+    const amountInput = document.getElementById('amount');
+    const accountList = document.getElementById('accountList');
+    const searchButton = document.getElementById('searchButton');
+    const searchDate = document.getElementById('searchDate');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        addAccount(descriptionInput.value, amountInput.value);
+        descriptionInput.value = '';
+        amountInput.value = '';
+    });
+
+    function addAccount(description, amount) {
+        const account = { description, amount, date: new Date().toLocaleString() };
+        const accounts = getAccounts();
+        accounts.push(account);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+        displayAccounts();
+    }
+
+    function getAccounts() {
+        const accounts = localStorage.getItem('accounts');
+        return accounts ? JSON.parse(accounts) : [];
+    }
+
+    function displayAccounts(filterDate = '') {
+        const accounts = getAccounts();
+        accountList.innerHTML = '';
+
+        filterDateFormatted = filterDate ? formatDate(filterDate) : '';
+        console.log(filterDateFormatted);
+
+        accounts.forEach((account, index) => {
+            if (!filterDateFormatted || account.date.startsWith(filterDateFormatted)) {
+                const li = document.createElement('li');
+                li.textContent = `${account.date} - ${account.description}: ${account.amount}원`;
+
+                // 삭제 버튼 추가
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '삭제';
+                deleteButton.style.width = '50px';
+                deleteButton.style.height = '25px';
+                deleteButton.onclick = function () { deleteAccount(index); };
+                li.appendChild(deleteButton);
+
+                accountList.appendChild(li);
+            }
+        });
+    }
+
+    function formatDate(date) {
+        const d = new Date(date);
+        let month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        return [year, month, day].join('. ') + '.';
+    }
+
+    function deleteAccount(index) {
+        const accounts = getAccounts();
+        accounts.splice(index, 1);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+        displayAccounts(searchDate.value); // 현재 필터에 맞게 다시 목록 표시
+    }
+
+    searchButton.addEventListener('click', () => {
+        displayAccounts(searchDate.value);
+    });
+
+
+
+    displayAccounts();
+});
