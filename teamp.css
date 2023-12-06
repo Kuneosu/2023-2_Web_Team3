@@ -428,3 +428,42 @@ h2 {
     font-size: 28px;
     margin-bottom: 5px;
 }
+
+
+#tetris {
+    position: relative;
+}
+
+canvas {
+    border: 1px solid #ccc;
+}
+
+#startBtn {
+
+
+    font-size: 18px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#tetrisContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 600px;
+    border: 2px dashed rgb(0, 156, 228);
+
+    padding: 10px;
+
+    background-color: white;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+}

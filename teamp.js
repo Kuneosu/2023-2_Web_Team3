@@ -1,3 +1,5 @@
+// Robot question
+
 const date_loader = () => {
     // Check if the user has already answered the robot question
     const hasAnsweredRobotQuestion = localStorage.getItem('hasAnsweredRobotQuestion');
@@ -35,6 +37,8 @@ const date_loader = () => {
     }
 };
 
+// Current date loader
+
 const loadPage = () => {
     const currentDate = new Date();
     document.getElementById('date').innerText = `${currentDate.toLocaleDateString()} / ${currentDate.toLocaleTimeString()}`;
@@ -47,6 +51,8 @@ const loadPage = () => {
 // Call the date_loader function to start the process
 date_loader();
 
+
+// Gallery
 
 document.addEventListener("DOMContentLoaded", function () {
     const gallery_container = document.getElementById('gallery_container');
@@ -109,6 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 초기 슬라이더 위치 설정
     updateSlider();
+
+
+    // #Todo List
+
 
     const todoInput = document.getElementById('todoInput');
     const addTodoBtn = document.getElementById('addTodoBtn');
@@ -183,15 +193,16 @@ function toggleGallery() {
     }
 }
 
-
-
-
+// page location
 
 const go = (link) => {
     window.location.href = `./${link}.html`;
 }
 
 
+
+
+// ACCOUNT BOOK
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('accountForm');
@@ -269,4 +280,209 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     displayAccounts();
+});
+
+
+
+// TETRIS GAME
+
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'PageUp' || e.key === 'PageDown' || e.key === 'Home' || e.key === 'End') {
+        e.preventDefault();
+    }
+});
+
+const canvas = document.getElementById('tetrisCanvas');
+const context = canvas.getContext('2d');
+
+const ROWS = 20;
+const COLUMNS = 10;
+const BLOCK_SIZE = 30;
+
+const board = Array.from({ length: ROWS }, () => Array(COLUMNS).fill({ color: null }));
+
+const pieces = [
+    { shape: [[1, 1, 1, 1]], color: '#ff5733' }, // Red
+    { shape: [[1, 1], [1, 1]], color: '#3498db' }, // Blue
+    { shape: [[1, 1, 1], [0, 1, 0]], color: '#2ecc71' }, // Green
+    { shape: [[1, 1, 1], [1, 0, 0]], color: '#f39c12' }, // Orange
+    { shape: [[1, 1, 1], [0, 0, 1]], color: '#9b59b6' }, // Purple
+    { shape: [[1, 1, 0], [0, 1, 1]], color: '#e74c3c' }, // Red
+    { shape: [[0, 1, 1], [1, 1, 0]], color: '#34495e' } // Dark Gray
+];
+
+let currentPiece;
+let currentRow = 0;
+let currentCol = 0;
+let gameInterval;
+
+const tetrisContainer = document.getElementById('tetrisContainer');
+const startBtn = document.getElementById('startBtn');
+startBtn.addEventListener('click', startGame);
+
+function startGame() {
+    startBtn.style.display = 'none';
+    canvas.style.display = 'block';
+    resetGame();
+    gameInterval = setInterval(() => {
+        moveDown();
+        draw();
+    }, 1000);
+}
+
+let score = 0;  // 스코어 초기값 설정
+
+function draw() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawBoard();
+    drawPiece();
+    drawScore();  // 스코어 그리기 추가
+}
+
+function drawScore() {
+    context.fillStyle = '#000';
+    context.font = '20px Arial';
+    context.fillText('Score: ' + score, 10, 30);
+}
+
+function drawBoard() {
+    for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLUMNS; col++) {
+            if (board[row][col].color) {
+                context.fillStyle = board[row][col].color;
+                context.fillRect(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            }
+        }
+    }
+}
+
+function drawPiece() {
+    if (currentPiece) {
+        for (let row = 0; row < currentPiece.shape.length; row++) {
+            for (let col = 0; col < currentPiece.shape[row].length; col++) {
+                if (currentPiece.shape[row][col]) {
+                    context.fillStyle = currentPiece.color;
+                    context.fillRect(
+                        (currentCol + col) * BLOCK_SIZE,
+                        (currentRow + row) * BLOCK_SIZE,
+                        BLOCK_SIZE,
+                        BLOCK_SIZE
+                    );
+                }
+            }
+        }
+    }
+}
+
+function moveDown() {
+    if (isValidMove(1, 0)) {
+        currentRow++;
+    } else {
+        placePiece();
+        clearRows();
+        spawnPiece();
+    }
+}
+
+function moveLeft() {
+    if (isValidMove(0, -1)) {
+        currentCol--;
+    }
+}
+
+function moveRight() {
+    if (isValidMove(0, 1)) {
+        currentCol++;
+    }
+}
+
+function rotate() {
+    const rotatedPiece = rotateMatrix(currentPiece.shape);
+    if (isValidMove(0, 0, { shape: rotatedPiece, color: currentPiece.color })) {
+        currentPiece.shape = rotatedPiece;
+    }
+}
+
+function isValidMove(rowOffset, colOffset, piece = currentPiece) {
+    for (let row = 0; row < piece.shape.length; row++) {
+        for (let col = 0; col < piece.shape[row].length; col++) {
+            if (
+                piece.shape[row][col] &&
+                (board[currentRow + row + rowOffset] &&
+                    board[currentRow + row + rowOffset][currentCol + col + colOffset].color) !== null
+            ) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function placePiece() {
+    for (let row = 0; row < currentPiece.shape.length; row++) {
+        for (let col = 0; col < currentPiece.shape[row].length; col++) {
+            if (currentPiece.shape[row][col]) {
+                board[currentRow + row][currentCol + col] = { color: currentPiece.color };
+            }
+        }
+    }
+}
+
+function clearRows() {
+    const fullRows = board.filter((row) => row.every((cell) => cell.color !== null));
+    score += fullRows.length * 10;  // 한 줄 당 10점 추가
+    fullRows.forEach((fullRow) => {
+        const index = board.indexOf(fullRow);
+        board.splice(index, 1);
+        board.unshift(Array(COLUMNS).fill({ color: null }));
+    });
+}
+
+function spawnPiece() {
+    currentPiece = pieces[Math.floor(Math.random() * pieces.length)];
+    currentRow = 0;
+    currentCol = Math.floor((COLUMNS - currentPiece.shape[0].length) / 2);
+
+    if (!isValidMove(0, 0)) {
+        // Game over if new piece cannot be placed
+        alert('Game Over!');
+        clearInterval(gameInterval);
+        startBtn.style.display = 'block';
+        startBtn.style.position = 'absolute';
+        startBtn.style.top = '50%';
+        startBtn.style.left = '50%';
+        startBtn.style.transform = 'translate(-50%, -50%)';
+
+    }
+}
+
+function resetGame() {
+    board.forEach((row) => row.fill({ color: null }));
+    score = 0;  // 게임 리셋 시 스코어 초기화
+    spawnPiece();
+}
+
+function rotateMatrix(matrix) {
+    const result = matrix[0].map((_, colIndex) =>
+        matrix.map((row) => row[colIndex]).reverse()
+    );
+    return result;
+}
+
+document.addEventListener('keydown', (event) => {
+    switch (event.code) {
+        case 'ArrowDown':
+            moveDown();
+            break;
+        case 'ArrowLeft':
+            moveLeft();
+            break;
+        case 'ArrowRight':
+            moveRight();
+            break;
+        case 'ArrowUp':
+            rotate();
+            break;
+    }
+    draw();
 });
