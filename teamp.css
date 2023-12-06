@@ -203,15 +203,15 @@ h1 span:nth-child(9) {
 }
 
 #K {
-    background-image: url(/K.png);
+    background-image: url(./K.png);
 }
 
 #C {
-    background-image: url(/C.png);
+    background-image: url(./C.png);
 }
 
 #U {
-    background-image: url(/U.png);
+    background-image: url(./U.png);
 }
 
 button {
@@ -440,7 +440,7 @@ canvas {
 
 #startBtn {
 
-
+    padding: 10px 20px;
     font-size: 18px;
     background-color: #4caf50;
     color: #fff;
