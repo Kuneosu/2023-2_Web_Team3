@@ -1,11 +1,9 @@
 // Robot question
 
 const date_loader = () => {
-    // Check if the user has already answered the robot question
     const hasAnsweredRobotQuestion = localStorage.getItem('hasAnsweredRobotQuestion');
 
     if (hasAnsweredRobotQuestion === 'true') {
-        // User has already answered the robot question
         loadPage();
     } else {
         const isNotRobot = confirm("로봇이 아니라면 아래의 문제를 풀어주세요.");
@@ -20,7 +18,6 @@ const date_loader = () => {
                 const userAnswer = parseInt(answer);
 
                 if (!isNaN(userAnswer) && userAnswer === correctAnswer) {
-                    // User answered correctly, store the information
                     localStorage.setItem('hasAnsweredRobotQuestion', 'true');
                     loadPage();
                 } else {
@@ -32,12 +29,11 @@ const date_loader = () => {
             }
         } else {
             alert("로봇입니다. 페이지에 접속할 수 없습니다.");
-            // Handle the case when it's a robot
         }
     }
 };
 
-// Current date loader
+// 현재 날짜 및 시간 표시
 
 const loadPage = () => {
     const currentDate = new Date();
@@ -48,11 +44,11 @@ const loadPage = () => {
     }, 1000);
 };
 
-// Call the date_loader function to start the process
+
 date_loader();
 
 
-// Gallery
+// 갤러리
 
 document.addEventListener("DOMContentLoaded", function () {
     const gallery_container = document.getElementById('gallery_container');
@@ -117,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSlider();
 
 
-    // #Todo List
+    // 투두 리스트
 
 
     const todoInput = document.getElementById('todoInput');
@@ -140,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
 
             todoList.appendChild(li);
-            todoInput.value = ''; // 입력 필드 초기화
+            todoInput.value = '';
 
             // 추가한 할일 목록을 로컬 스토리지에 저장
             saveTodoList();
@@ -180,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// 갤러리 열고 닫기
+
 function toggleGallery() {
     gallery = document.getElementById('gallery_container');
 
@@ -193,16 +191,14 @@ function toggleGallery() {
     }
 }
 
-// page location
+// 페이지 이동
 
 const go = (link) => {
     window.location.href = `./${link}.html`;
 }
 
 
-
-
-// ACCOUNT BOOK
+// 가계부
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('accountForm');
@@ -284,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// TETRIS GAME
+// 테트리스 게임
 
 window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'PageUp' || e.key === 'PageDown' || e.key === 'Home' || e.key === 'End') {
